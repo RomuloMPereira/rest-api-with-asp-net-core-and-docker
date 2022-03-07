@@ -1,5 +1,5 @@
 ﻿using RestWithASPNETUdemy.Model;
-using RestWithASPNETUdemy.Repositories;
+using RestWithASPNETUdemy.Repositories.Generic;
 using System.Collections.Generic;
 
 namespace RestWithASPNETUdemy.Services.Implementations
@@ -7,9 +7,9 @@ namespace RestWithASPNETUdemy.Services.Implementations
     public class BookServiceImplementation : IBookService
     {
 
-        private readonly IBookRepository _repository;
+        private readonly IRepository<Book> _repository;
 
-        public BookServiceImplementation(IBookRepository repository)
+        public BookServiceImplementation(IRepository<Book> repository)
         {
             _repository = repository;
         }

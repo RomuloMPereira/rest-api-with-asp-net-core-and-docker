@@ -5,10 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RestWithASPNETUdemy.Context;
-using RestWithASPNETUdemy.Repositories;
-using RestWithASPNETUdemy.Repositories.Implementations;
-using RestWithASPNETUdemy.Repository;
-using RestWithASPNETUdemy.Repository.Implementations;
+using RestWithASPNETUdemy.Repositories.Generic;
 using RestWithASPNETUdemy.Services;
 using RestWithASPNETUdemy.Services.Implementations;
 using Serilog;
@@ -51,9 +48,8 @@ namespace RestWithASPNETUdemy
 
             //Dependency Injection
             services.AddScoped<IPersonService, PersonServiceImplementation>();
-            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
             services.AddScoped<IBookService, BookServiceImplementation>();
-            services.AddScoped<IBookRepository, BookRepositoryImplementation>();
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
