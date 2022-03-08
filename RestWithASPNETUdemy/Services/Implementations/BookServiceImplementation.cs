@@ -1,4 +1,6 @@
-﻿using RestWithASPNETUdemy.Model;
+﻿using RestWithASPNETUdemy.Data.Converter.Implementations;
+using RestWithASPNETUdemy.Data.VO;
+using RestWithASPNETUdemy.Model;
 using RestWithASPNETUdemy.Repositories.Generic;
 using System.Collections.Generic;
 
@@ -8,34 +10,40 @@ namespace RestWithASPNETUdemy.Services.Implementations
     {
 
         private readonly IRepository<Book> _repository;
+        private readonly BookConverter _converter;
 
         public BookServiceImplementation(IRepository<Book> repository)
         {
             _repository = repository;
+            _converter = new BookConverter();
         }
 
         // Method responsible for returning all people,
-        public List<Book> FindAll()
+        public List<BookVO> FindAll()
         {
-            return _repository.FindAll();
+            return _converter.Parse(_repository.FindAll());
         }
 
         // Method responsible for returning one book by ID
-        public Book FindByID(long id)
+        public BookVO FindByID(long id)
         {
-            return _repository.FindByID(id);
+            return _converter.Parse(_repository.FindByID(id));
         }
 
         // Method responsible to crete one new book
-        public Book Create(Book book)
+        public BookVO Create(BookVO book)
         {
-            return _repository.Create(book);
+            var entity = _converter.Parse(book);
+            entity = _repository.Create(entity);
+            return _converter.Parse(entity);
         }
 
         // Method responsible for updating one book
-        public Book Update(Book book)
+        public BookVO Update(BookVO book)
         {
-            return _repository.Update(book);
+            var entity = _converter.Parse(book);
+            entity = _repository.Update(entity);
+            return _converter.Parse(entity);
         }
 
         // Method responsible for deleting a book from an ID
