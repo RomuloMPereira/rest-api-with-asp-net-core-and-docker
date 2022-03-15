@@ -139,6 +139,8 @@ namespace RestWithASPNETUdemy
             services.AddScoped<ILoginService, LoginServiceImplementation>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<IPersonRepository, PersonRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
