@@ -6,12 +6,9 @@
     <ProjectGuid>b2d833a0-e890-41d0-92cb-a364b7d0428d</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/person/v1</DockerServiceUrl>
-    <DockerServiceName>restwithaspnetudemy</DockerServiceName>
+    <DockerServiceName>rest-with-asp-net-udemy</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="docker-compose.override.yml">
-      <DependentUpon>docker-compose.yml</DependentUpon>
-    </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
   </ItemGroup>
